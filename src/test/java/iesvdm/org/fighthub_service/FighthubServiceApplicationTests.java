@@ -1,0 +1,13 @@
+package iesvdm.org.fighthub_service;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+
+@SpringBootTest
+class FighthubServiceApplicationTests {
+
+    @Test
+    void contextLoads() {
+    }
+
+}
