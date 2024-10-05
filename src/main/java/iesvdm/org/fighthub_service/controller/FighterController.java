@@ -23,7 +23,7 @@ public class FighterController {
         return fighterService.getFighters();
     }
     @GetMapping(value = {"/{id}"})
-    public Fighter getFighter(Long id) {
+    public Fighter getFighter(@PathVariable Long id) {
         log.info("FighterController: getFighter - id: " + id);
         return fighterService.getFighter(id);
     }

@@ -23,7 +23,7 @@ public class StyleController {
         return styleService.getStyles();
     }
     @GetMapping(value = {"/{id}"})
-    public Style getStyle(Long id) {
+    public Style getStyle(@PathVariable Long id) {
         log.info("StyleController: getStyle - id: " + id);
         return styleService.getStyle(id);
     }

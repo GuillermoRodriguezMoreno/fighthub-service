@@ -26,6 +26,7 @@ public class ClubService {
     public Club updateClub (Long id, Club club){
         Club clubToUpdate = this.getClub(id);
         BeanUtils.copyProperties(club, clubToUpdate, "id");
+        System.out.println(clubToUpdate);
         return clubRepository.save(clubToUpdate);
     }
     public void deleteClub(Long id) {

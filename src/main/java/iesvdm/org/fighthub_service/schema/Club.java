@@ -1,5 +1,6 @@
 package iesvdm.org.fighthub_service.schema;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.*;
@@ -39,10 +40,12 @@ public class Club {
     private String phone;
 
     @OneToMany(mappedBy = "organizer", cascade = CascadeType.MERGE)
+    @JsonIgnore
     @ToString.Exclude
     private Set<Event> eventsOrganized = new HashSet<>();
 
     @OneToMany(mappedBy = "club", cascade = CascadeType.MERGE)
+    @JsonIgnore
     @ToString.Exclude
     private Set<Fighter> fighters = new HashSet<>();
 }

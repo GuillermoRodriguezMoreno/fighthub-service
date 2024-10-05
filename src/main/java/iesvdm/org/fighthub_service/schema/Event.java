@@ -1,5 +1,6 @@
 package iesvdm.org.fighthub_service.schema;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Future;
@@ -40,7 +41,7 @@ public class Event {
     private LocalDate startDate;
 
     @ManyToOne()
-    @JoinColumn(name = "organizer_id")
+    @JoinColumn(name = "organizer_id", nullable = false)
     private Club organizer;
 
     @ManyToMany()
@@ -49,9 +50,11 @@ public class Event {
             joinColumns = @JoinColumn(name = "event_id"),
             inverseJoinColumns = @JoinColumn(name = "fighter_id")
     )
+    @JsonIgnore
     @ToString.Exclude
     private Set<Fighter> fightersParticipating = new HashSet<>();
 
+    @JsonIgnore
     @OneToMany(mappedBy = "event", cascade = CascadeType.MERGE)
     @ToString.Exclude
     private Set<Fight> fights = new HashSet<>();

@@ -1,5 +1,6 @@
 package iesvdm.org.fighthub_service.schema;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.*;
@@ -47,6 +48,7 @@ public class Fighter {
     private Category category;
 
     @ManyToMany(mappedBy = "fightersParticipating", cascade = CascadeType.MERGE)
+    @JsonIgnore
     @ToString.Exclude
     private Set<Event> eventsParticipated = new HashSet<>();
 
@@ -56,13 +58,16 @@ public class Fighter {
             joinColumns = @JoinColumn(name = "fighter_id"),
             inverseJoinColumns = @JoinColumn(name = "style_id")
     )
+    @JsonIgnore
     private Set<Style> styles = new HashSet<>();
 
     @OneToMany(mappedBy = "blueCornerFighter", cascade = CascadeType.MERGE)
+    @JsonIgnore
     @ToString.Exclude
     private Set<Fight> blueCornerFights = new HashSet<>();
 
     @OneToMany(mappedBy = "redCornerFighter", cascade = CascadeType.MERGE)
+    @JsonIgnore
     @ToString.Exclude
     private Set<Fight> redCornerFights = new HashSet<>();
 }
